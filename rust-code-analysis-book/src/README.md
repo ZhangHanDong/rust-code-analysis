@@ -51,6 +51,6 @@ If you prefer to use **rust-code-analysis** as a crate, you can find the
 
 - Mozilla-defined grammars are released under the MIT license.
 
-- **rust-code-analysis**, **rust-code-analysis-cli** and **rust-code-analysis-web**
+- **rust-code-analysis** and **rust-code-analysis-cli**
 are released under the
 <a href="https://www.mozilla.org/MPL/2.0/" target="_blank">Mozilla Public License v2.0</a>.

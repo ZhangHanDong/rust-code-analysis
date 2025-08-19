@@ -40,13 +40,7 @@ If you want to build the `cli`:
 cargo build -p rust-code-analysis-cli
 ```
 
-If you want to build the `web` server:
-
-```console
-cargo build -p rust-code-analysis-web
-```
-
-If you want to build everything in one fell swoop:
+If you want to build everything in one fell swoop (library + CLI):
 
 ```console
 cargo build --workspace
@@ -127,17 +121,7 @@ To know the list of **rust-code-analysis-cli** parameters, run:
 cargo run -p rust-code-analysis-cli -- --help
 ```
 
-You can run **rust-code-analysis-web** using:
-
-```console
-cargo run -p rust-code-analysis-web -- [rust-code-analysis-web-parameters]
-```
-
-To know the list of **rust-code-analysis-web** parameters, run:
-
-```console
-cargo run -p rust-code-analysis-web -- --help
-```
+The former web server component has been removed from this repository to keep the core workflow minimal.
 
 ## Practical advice
 

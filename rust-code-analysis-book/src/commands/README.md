@@ -32,4 +32,4 @@ Nodes can be used to:
 
 ## REST API
 
-**rust-code-analysis-web** runs a server offering a REST API. This allows users to send source code via HTTP and receive corresponding metrics in `JSON` format.
+The previous REST API (rust-code-analysis-web) has been removed from this repository.

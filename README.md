@@ -22,7 +22,7 @@ This tool can be used to:
 - Print nodes and metrics information
 - Export metrics in different formats
 
-In addition, we provide a **rust-code-analysis-web** tool to use the library through a REST API.
+ 
 
 
 # Usage
@@ -52,13 +52,7 @@ If you want to build the `cli`:
 cargo build -p rust-code-analysis-cli
 ```
 
-If you want to build the `web` server:
-
-```console
-cargo build -p rust-code-analysis-web
-```
-
-If you want to build everything in one fell swoop:
+If you want to build the default workspace (library + CLI):
 
 ```console
 cargo build --workspace
@@ -71,6 +65,23 @@ To verify whether all tests pass, run the `cargo test` command.
 ```console
 cargo test --workspace --all-features --verbose
 ```
+
+### Integration tests with external fixtures
+By default, integration tests that rely on large external repositories (DeepSpeech, pdf.js, serde) are disabled and no git submodules are used. To run them explicitly, enable the feature `with-fixtures`:
+
+```console
+cargo test --features with-fixtures --verbose
+```
+
+If you do not enable this feature, building and running unit tests do not fetch any external repositories.
+
+You can also fetch the repositories on demand via the helper script:
+
+```console
+scripts/fetch-fixtures.sh
+```
+
+The script performs shallow, blob-less clones into `tests/repositories/`. You can control refs via env vars `DEEPSPEECH_REF`, `PDFJS_REF`, `SERDE_REF`.
 
 ### Updating insta tests
 We use [insta](https://insta.rs), to update the snapshot tests you should install [cargo insta](https://crates.io/crates/cargo-insta)
@@ -116,6 +127,6 @@ guidelines contained in our
 
 - Mozilla-defined grammars are released under the MIT license.
 
-- **rust-code-analysis**, **rust-code-analysis-cli** and **rust-code-analysis-web**
+- **rust-code-analysis** 和 **rust-code-analysis-cli**
 are released under the
 <a href="https://www.mozilla.org/MPL/2.0/" target="_blank">Mozilla Public License v2.0</a>.

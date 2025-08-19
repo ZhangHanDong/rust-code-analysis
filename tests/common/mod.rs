@@ -70,6 +70,13 @@ pub fn compare_rca_output_with_files(repo_name: &str, include: &[&str], exclude:
 
     let cfg = Config { language: None };
 
+    // If fixture directory is missing, skip gracefully.
+    let repo_path = Path::new(REPO).join(repo_name);
+    if !repo_path.exists() {
+        eprintln!("[skip] fixtures not found: {} (run scripts/fetch-fixtures.sh)", repo_path.display());
+        return;
+    }
+
     let mut gsbi = GlobSetBuilder::new();
     for file in include {
         gsbi.add(Glob::new(file).unwrap());
@@ -83,7 +90,7 @@ pub fn compare_rca_output_with_files(repo_name: &str, include: &[&str], exclude:
     let files_data = FilesData {
         include: gsbi.build().unwrap(),
         exclude: gsbe.build().unwrap(),
-        paths: vec![Path::new(REPO).join(repo_name)],
+        paths: vec![repo_path],
     };
 
     if let Err(e) = ConcurrentRunner::new(num_jobs, act_on_file).run(cfg, files_data) {

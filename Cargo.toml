@@ -47,8 +47,14 @@ opt-level = 3
 opt-level = 3
 
 [workspace]
-members = ["rust-code-analysis-cli", "rust-code-analysis-web"]
+members = ["rust-code-analysis-cli"]
 exclude = ["enums"]
+
+[features]
+# 默认不包含需要外部仓库夹具的集成测试。
+default = []
+# 显式启用后，才会编译/运行依赖 tests/repositories 的集成测试。
+with-fixtures = []
 
 [profile.release]
 opt-level = 3
